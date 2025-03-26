@@ -1,0 +1,24 @@
+// index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSP Solver</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Traveling Salesman Problem Solver</h2>
+        <form id="tspForm">
+            <input type="text" id="cityName" placeholder="City Name" required>
+            <input type="number" id="xCoord" placeholder="X Coordinate" required>
+            <input type="number" id="yCoord" placeholder="Y Coordinate" required>
+            <button type="button" onclick="addCity()">Add City</button>
+        </form>
+        <button class="solve-btn" onclick="solveTSP()">Solve TSP</button>
+        <canvas id="canvas" width="500" height="500"></canvas>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
