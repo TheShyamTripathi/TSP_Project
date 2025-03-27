@@ -7,17 +7,20 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Traveling Salesman Problem Solver</h2>
-        <form id="tspForm">
-            <input type="text" id="cityName" placeholder="City Name" required>
-            <input type="number" id="xCoord" placeholder="X Coordinate" required>
-            <input type="number" id="yCoord" placeholder="Y Coordinate" required>
-            <button type="button" onclick="addCity()">Add City</button>
-        </form>
-        <button class="solve-btn" onclick="solveTSP()">Solve TSP</button>
-        <canvas id="canvas" width="500" height="500"></canvas>
-    </div>
+    <h1>Traveling Salesman Problem (TSP) Solver</h1>
+    
+    <form id="cityForm">
+        <input type="text" id="city1" placeholder="City 1" required>
+        <input type="text" id="city2" placeholder="City 2" required>
+        <input type="number" id="distance" placeholder="Distance" required>
+        <button type="submit">Add Path</button>
+    </form>
+    
+    <button id="solveTSP">Solve TSP</button>
+    <button id="clearCanvas">Clear</button>
+
+    <canvas id="tspCanvas"></canvas>
+
     <script src="script.js"></script>
 </body>
 </html>

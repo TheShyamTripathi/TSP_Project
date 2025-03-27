@@ -1,20 +1,16 @@
+-- Haskell Backend for TSP Solver using Scotty
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE DeriveGeneric #-}
-
 import Web.Scotty
 import Data.Aeson (FromJSON, ToJSON, decode)
-import GHC.Generics (Generic)  -- Add this import
-import qualified Data.ByteString.Lazy as BL
 import Data.Text.Lazy.Encoding (decodeUtf8)
 import qualified Data.Text.Lazy as T
 import Control.Monad.IO.Class (liftIO)
 import Data.List (permutations, minimumBy)
 import Data.Function (on)
-import Network.Wai.Middleware.Cors (simpleCors)
 
 -- Data structure for cities and distances
 data City = City { name :: String, x :: Double, y :: Double }
-  deriving (Show, Eq, Generic)  -- Deriving Generic
+  deriving (Show, Eq)
 
 instance FromJSON City
 instance ToJSON City
@@ -32,11 +28,9 @@ tspSolver cities =
 
 main :: IO ()
 main = scotty 3000 $ do
-  middleware simpleCors  -- Allow CORS
-
   post "/solve" $ do
     body <- body
-    let cities = decode body :: Maybe [City]
+    let cities = decode (decodeUtf8 body) :: Maybe [City]
     case cities of
       Just cs -> do
         let (path, totalCost) = tspSolver cs
